@@ -313,6 +313,11 @@ class PathParser {
         float rxcy = rx * rx * cy * cy;
         float a = rxry - rxcy - rycx;
 
+        // Handle extreme values
+        if (a == Float.POSITIVE_INFINITY || a == Float.NEGATIVE_INFINITY) {
+          return;
+        }
+
         if (a < 0) {
             a = (float) Math.sqrt(1 - a / rxry);
             rx *= a;
